@@ -14,6 +14,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "WebApp", "src\WebApp\WebApp
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Api", "src\Api\Api.xproj", "{F12707CC-CC11-4C85-BE86-91FD3B1E5A20}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Data", "src\Data\Data.xproj", "{35C01B30-F0BD-4B82-B13A-6F24B0AA8929}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -28,6 +30,10 @@ Global
 		{F12707CC-CC11-4C85-BE86-91FD3B1E5A20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F12707CC-CC11-4C85-BE86-91FD3B1E5A20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F12707CC-CC11-4C85-BE86-91FD3B1E5A20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35C01B30-F0BD-4B82-B13A-6F24B0AA8929}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35C01B30-F0BD-4B82-B13A-6F24B0AA8929}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35C01B30-F0BD-4B82-B13A-6F24B0AA8929}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35C01B30-F0BD-4B82-B13A-6F24B0AA8929}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -35,5 +41,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{2F9ED602-D523-47A2-BFFD-E17E8ECFACC7} = {E65E5A3F-7A8E-484C-BA50-ABFEF829172E}
 		{F12707CC-CC11-4C85-BE86-91FD3B1E5A20} = {E65E5A3F-7A8E-484C-BA50-ABFEF829172E}
+		{35C01B30-F0BD-4B82-B13A-6F24B0AA8929} = {E65E5A3F-7A8E-484C-BA50-ABFEF829172E}
 	EndGlobalSection
 EndGlobal
