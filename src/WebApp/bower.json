@@ -2,6 +2,7 @@
 	"name": "ASP.NET",
 	"private": true,
   "dependencies": {
-    "foundation-sites": "^6.2.1"
+    "foundation-sites": "^6.2.1",
+    "jquery": "^2.2.3"
   }
 }
