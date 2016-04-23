@@ -3,5 +3,8 @@
   "name": "StreamingElectron",
   "private": true,
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {
+    "gulp": "~3.9.1",
+    "gulp-sass": "~2.3.1"
+  }
 }

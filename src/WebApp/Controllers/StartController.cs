@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Mvc;
+using WebApp.ViewModels;
 
 namespace WebApp.Controllers
 {
@@ -10,7 +11,8 @@ namespace WebApp.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var model = new StartViewModel();
+            return View("Index", model);
         }
     }
 }
