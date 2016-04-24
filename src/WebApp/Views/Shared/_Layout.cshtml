@@ -4,17 +4,17 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation Starter Template</title>
-    <link href="~/lib/foundation-sites/dist/foundation.css" rel="stylesheet" />
+    <title>Streaming Electron</title>
+    <link href="~/static/css/main.css" rel="stylesheet" />
 </head>
 <body>
-    <div>@RenderBody()</div>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    <script src="~/lib/what-input/what-input.js"></script>
-    <script src="~/lib/foundation-sites/dist/foundation.js"></script>
-    <script>
-        $(document).foundation();
-    </script>
+    @Html.Partial("_PageHeader")
+
+    <div>
+        @RenderBody()
+    </div>
+
+    @Html.Partial("_Scripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>
