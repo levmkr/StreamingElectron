@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
-namespace Api.Models
+namespace Data.Models
 {
     public class Participant
     {
-        public Guid Id { get; set; } = Guid.NewGuid();
+        [Key]
+        public Guid Id { get; set; }
+
+        public string ParticipantId { get; set; }
 
         public string Email { get; set; }
     }

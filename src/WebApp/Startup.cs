@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Data;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.AspNet.Http;
+using Microsoft.Data.Entity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -30,6 +27,22 @@ namespace WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            var connectionString = Configuration["Data:DefaultConnection:ConnectionString"];
+
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<ProjectDbContext>(options =>
+                {
+                    options.UseSqlServer(connectionString);
+                });
+
+            //var connection = @"Server=(localdb);Database=StreamingElectron;Trusted_Connection=True;";
+
+            //services.AddEntityFramework()
+            //    .AddSqlServer()
+            //    .AddDbContext<ProjectDbContext>(options => options.UseSqlServer(Configuration.Get(connection)));
+            //.AddDbContext<ProjectDbContext>(options => options.UseSqlServer(Configuration.Get("Data:ConnectionString")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,11 +57,6 @@ namespace WebApp
                     name: "default",
                     template: "{controller=Start}/{action=Index}/{id?}");
             });
-
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
         }
 
         // Entry point for the application.
