@@ -1,9 +1,10 @@
 ﻿using Data;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace WebApp
 {
@@ -15,6 +16,7 @@ namespace WebApp
         {
             // Set up configuration sources.
             var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json")
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
@@ -30,12 +32,15 @@ namespace WebApp
 
             var connectionString = Configuration["Data:DefaultConnection:ConnectionString"];
 
-            services.AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<ProjectDbContext>(options =>
-                {
-                    options.UseSqlServer(connectionString);
-                });
+            services.AddDbContext<ProjectDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            //services.AddEntityFramework()
+            //    .AddSqlServer()
+            //    .AddDbContext<ProjectDbContext>(options =>
+            //    {
+            //        options.UseSqlServer(connectionString);
+            //    });
 
             //var connection = @"Server=(localdb);Database=StreamingElectron;Trusted_Connection=True;";
 
@@ -46,20 +51,34 @@ namespace WebApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseIISPlatformHandler();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+                app.UseBrowserLink();
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
+            //app.UseIdentity();
             app.UseStaticFiles();
 
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Start}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
 
         // Entry point for the application.
-        public static void Main(string[] args) => WebApplication.Run<Startup>(args);
+        //public static void Main(string[] args) => WebApplication.Run<Startup>(args);
     }
 }

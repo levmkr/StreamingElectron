@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNet.Mvc;
+using Data.Models;
+using Microsoft.AspNetCore.Mvc;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers
@@ -13,6 +11,14 @@ namespace WebApp.Controllers
         {
             var model = new StartViewModel();
             return View("Index", model);
+        }
+
+        [HttpPost]
+        public IActionResult GetPartcipant(Participant participant)
+        {
+            // check in the db if participant exists
+            // if yes: show new form where user enters email and saves it to the db
+            throw new NotImplementedException();
         }
     }
 }
